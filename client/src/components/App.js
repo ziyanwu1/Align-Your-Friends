@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Router } from "@reach/router";
 import jwt_decode from "jwt-decode";
+import { Link } from "@reach/router";
 
 import NotFound from "./pages/NotFound.js";
 import Skeleton from "./pages/Skeleton.js";
+import Lobby from "./pages/Lobby.js";
 
 import "../utilities.css";
 
@@ -43,10 +45,15 @@ const App = () => {
 
   return (
     <>
-      <Router>
-        <Skeleton path="/" handleLogin={handleLogin} handleLogout={handleLogout} userId={userId} />
-        <NotFound default />
-      </Router>
+      <div>
+        <Link to="/lobby/" className="AppContainer-link">Lobby</Link>
+        <Router>
+          <Skeleton path="/" handleLogin={handleLogin} handleLogout={handleLogout} userId={userId} />
+          <Lobby path="/lobby/" />
+          <NotFound default />
+        </Router>
+      </div>
+      
     </>
   );
 };

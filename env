@@ -1,0 +1,2 @@
+SESSION_SECRET="session-secret"
+MONGO_SRV="mongodb+srv://admin:QW5boHT0bH9KbLGs@cluster0.j2pvkgl.mongodb.net/?retryWrites=true&w=majority"
