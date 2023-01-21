@@ -1,0 +1,23 @@
+.Navbar-container {
+  padding: var(--s) var(--m);
+  background-color: blue;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.Navbar-items {
+  height: var(--login-small-height);
+}
+
+.Navbar-leftside {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+.Navbar-rightside {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
