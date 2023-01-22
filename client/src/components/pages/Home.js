@@ -4,6 +4,14 @@ import Navbar from "../modules/Navbar";
 
 import "./Home.css";
 
+/*
+props:
+  handleLogin : callback function that handles login
+  handleLogout : callback function that handles logout
+  userId : contains the user's id
+
+*/
+
 const Home = (props) => {
   useEffect(() => {
     document.body.style.backgroundColor = "pink";
