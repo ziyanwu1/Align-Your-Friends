@@ -4,6 +4,7 @@ import jwt_decode from "jwt-decode";
 
 import NotFound from "./pages/NotFound.js";
 import Home from "./pages/Home.js";
+import Game from "./pages/Game.js";
 
 import "../utilities.css";
 
@@ -45,6 +46,7 @@ const App = () => {
     <>
       <Router>
         <Home path="/" handleLogin={handleLogin} handleLogout={handleLogout} userId={userId} />
+        <Game path="/game" players={["63c9bf7851c44d49f0c98220"]} />
         <NotFound default />
       </Router>
     </>
