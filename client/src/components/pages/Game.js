@@ -21,9 +21,6 @@ props:
 
 */
 
-// game should store what current player is currently "clicked on" as a state
-// then pass the setter function to <PlayersBar /> so we can change it when the users press on a button.
-
 const Game = (props) => {
   const [currentPlayer, setCurrentPlayer] = useState(undefined);
 

@@ -11,6 +11,7 @@ const express = require("express");
 
 // import models so we can interact with the database
 const User = require("./models/user");
+const GameModel = require("./models/gameModel");
 
 // import authentication library
 const auth = require("./auth");
@@ -48,6 +49,8 @@ router.get("/user", (req, res) => {
     res.send(user);
   });
 });
+
+// we definitely want an 'initgame' api for when we create a lobby
 
 // anything else falls to this "not found" case
 router.all("*", (req, res) => {

@@ -15,7 +15,7 @@ props:
 const Home = (props) => {
   useEffect(() => {
     document.body.style.backgroundColor = "pink";
-  });
+  }, []);
 
   return (
     <div className="Home-container">
