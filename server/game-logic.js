@@ -2,59 +2,67 @@
 
 /* constants */
 const colors = ["red", "blue", "green", "yellow", "purple", "orange", "silver"]; // colors to use for players
-
-let players = [];
-let colorPairs = {};
-let charts = [];
-let results = [];
-
-/* helper functions */
-const dictionary_get = (object, key, defaultValue) => {
-  let value = object[key];
-  return typeof value !== "undefined" ? value : defaultValue;
-};
-
+const charts = [{ up: "up", down: "down", left: "left", right: "right" }];
 //
 
-const startGame = (people) => {
-  players = [...people];
+const getRandomChart = () => {
+  const item = charts[Math.floor(Math.random() * charts.length)];
+  return item;
+};
+
+const initializeResults = (players) => {
+  let out = {};
+
+  for (let player of players) {
+    let temp = {};
+    for (p of players) {
+      temp[p] = [0, 0];
+    }
+    out[player] = temp;
+  }
+
+  return out;
+};
+
+const assignColors = (players) => {
+  let out = {};
 
   for (let i = 0; i < players.length; i++) {
-    colorPairs[players[i]] = colors[i];
+    out[players[i]] = colors[i];
   }
+
+  return out;
 };
 
-const updateGame = (chartNum, user, currentPlayer, x, y) => {
+const getTruePoints = (allCoords) => {
   /*
   inputs:
-    user: the account of the player who is clicking
-    currentPlayer: the avatar currently selected by the user
+    allCoords -- im pretty sure this is a map of maps
   */
+  let out = {};
 
-  if (chartNum >= charts.length) {
-    return;
+  let allCoordsObject = Object.fromEntries(allCoords);
+  for ([key, val] of Object.entries(allCoordsObject)) {
+    let singleCoord = Object.fromEntries(val);
+    out[key] = singleCoord[key];
   }
 
-  // theoretically, chartNum should ever only be at most 1 over the length of the results array
-  if (chartNum >= results.length) {
-    results.push({});
-  }
-
-  let newResults = dictionary_get(results[chartNum][user], {});
-  newResults[currentPlayer] = [x, y];
-  results[chartNum][user] = newResults;
+  return out;
 };
 
-const resetGame = () => {
-  // "post" it to the database of games probably
+const getDistance = (coord1, coord2) => {
+  /*
+  inputs:
+    coord1 -- coordinates in the form of an array: [x,y]
+    coord2 -- ditto of above
+  */
 
-  players = [];
-  colorPairs = {};
-  charts = [];
-  results = [];
+  return ((coord2[0] - coord1[0]) ** 2 + (coord2[1] - coord1[1]) ** 2) ** (1 / 2);
 };
 
 module.exports = {
-  startGame,
-  resetGame,
+  getRandomChart,
+  initializeResults,
+  assignColors,
+  getTruePoints,
 };

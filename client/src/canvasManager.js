@@ -11,6 +11,7 @@ const drawAxes = (canvasRef) => {
   let canvas = canvasRef.current;
   const context = canvas.getContext("2d");
 
+  context.fillStyle = "black";
   context.fillRect(0, canvas.height / 2, canvas.width, 3);
   context.fillRect(canvas.width / 2, 0, 3, canvas.height);
 };
@@ -27,4 +28,24 @@ const drawCircle = (canvasRef, x, y, color) => {
   fillCircle(context, newX, newY, RADIUS, color);
 };
 
-export { drawAxes, drawCircle };
+const drawPoints = (canvasRef, coords, colors) => {
+  /*
+  the 'coords' are the points that one player plots for everyone else on their canvas
+  */
+
+  for (let [key, val] of Object.entries(coords)) {
+    let x = val[0];
+    let y = val[1];
+    let color = colors[key];
+    drawCircle(canvasRef, x, y, color);
+  }
+};
+
+const clearCanvas = (canvasRef) => {
+  let canvas = canvasRef.current;
+  const context = canvas.getContext("2d");
+
+  context.clearRect(0, 0, canvas.width, canvas.height);
+};
+
+export { drawAxes, drawPoints, clearCanvas };

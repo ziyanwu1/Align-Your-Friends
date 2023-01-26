@@ -1,34 +1,68 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import { Link } from "@reach/router";
 
-import { drawAxes, drawCircle } from "../../canvasManager.js";
+import { drawAxes, drawPoints, clearCanvas } from "../../canvasManager.js";
+import { get, post } from "../../utilities.js";
 
 import "./Chart.css";
 
-// canvas here
-//    -- for writing the axises, we might want to use flex boxes and text
-//    -- also figure out how to draw the lines
-// submit button also here
+/*
+props:
+  currentPlayer  -- gives us the player whose avatar button was more recently pressed
+  user  -- gives us the id of the player in control
+  gameId  -- gives us the id of the game
+  code -- gives us the code of the socket room
+*/
 
 const Chart = (props) => {
   const canvasRef = useRef(undefined);
+  const [coords, setCoords] = useState(undefined);
+  const [colors, setColors] = useState(undefined);
+  const [chart, setChart] = useState({ left: "t", right: "t", up: "t", down: "t" });
 
   useEffect(() => {
-    drawAxes(canvasRef);
+    get("/api/getchart", { gameId: props.gameId }).then((chart) => {
+      setChart(chart);
+    });
+
+    get("/api/coords", {
+      user: props.user,
+      gameId: props.gameId /* this is probably going to come from the prop as well */,
+    }).then((result) => {
+      setCoords(result);
+    });
+
+    get("/api/colors", {
+      gameId: props.gameId /* this is probably going to come from the prop as well */,
+    }).then((colorDict) => {
+      setColors(colorDict);
+    });
+  }, []);
+
+  useEffect(() => {
+    if (coords && colors) {
+      clearCanvas(canvasRef);
+      drawAxes(canvasRef);
+      drawPoints(canvasRef, coords, colors);
+    }
   });
 
   const handleCanvasClick = (event) => {
     if (props.currentPlayer !== undefined) {
       const x = event.clientX;
       const y = event.clientY;
-      drawCircle(canvasRef, x, y, "red");
+
+      let newCoords = { ...coords };
+      newCoords[props.currentPlayer] = [x, y];
+      setCoords(newCoords);
     }
   };
 
   return (
     <div className="Chart-container">
-      <p>top</p>
+      <p>{chart.up}</p>
       <div className="Chart-middle">
-        <p>left</p>
+        <p>{chart.left}</p>
         <div>
           <canvas
             ref={canvasRef}
@@ -38,9 +72,15 @@ const Chart = (props) => {
             height="500px"
           ></canvas>
         </div>
-        <p>right</p>
+        <p>{chart.right}</p>
       </div>
-      <p>bottom</p>
+      <p>{chart.down}</p>
+      <Link
+        to="/end"
+        state={{ user: props.user, coords: coords, gameId: props.gameId, code: props.code }}
+      >
+        Submit
+      </Link>
     </div>
   );
 };

@@ -7,6 +7,7 @@ import NotFound from "./pages/NotFound.js";
 import Home from "./pages/Home.js";
 import Game from "./pages/Game.js";
 import Lobby from "./pages/Lobby.js";
+import End from "./pages/End.js";
 
 import "../utilities.css";
 
@@ -47,9 +48,10 @@ const App = () => {
   return (
     <>
       <Router>
-        <Home path="/" handleLogin={handleLogin} handleLogout={handleLogout} userId={userId} />
-        <Game path="/game" players={["63c9bf7851c44d49f0c98220"]} />
-        <Lobby path="/lobby/" />
+        <Home path="/" handleLogin={handleLogin} handleLogout={handleLogout} user={userId} />
+        <Game path="/game" user={userId} />
+        <Lobby path="/lobby" user={userId} />
+        <End path="/end" />
         <NotFound default />
       </Router>
     </>

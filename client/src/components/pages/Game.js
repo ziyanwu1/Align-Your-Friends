@@ -17,17 +17,24 @@ what do i need for the game when i start it?
 
 /*
 props:
-    players: a list of all the players in the game (players is in the form of an id)
-
+    location.state.players: a list of all the players in the game (players is in the form of an userId)
+    location.state.user: the userId of the current user
+    location.state.gameId:
+    location.state.code : the socket room code
 */
 
 const Game = (props) => {
-  const [currentPlayer, setCurrentPlayer] = useState(undefined);
+  const [currentPlayer, setCurrentPlayer] = useState(props.user);
 
   return (
     <div className="Game-container">
-      <PlayersBar players={props.players} onClick={setCurrentPlayer} />
-      <Chart currentPlayer={currentPlayer} />
+      <PlayersBar players={props.location.state.players} onClick={setCurrentPlayer} />
+      <Chart
+        currentPlayer={currentPlayer}
+        user={props.location.state.user}
+        gameId={props.location.state.gameId}
+        code={props.location.state.code}
+      />
     </div>
   );
 };

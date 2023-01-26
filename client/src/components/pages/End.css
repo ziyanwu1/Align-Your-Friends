@@ -1,0 +1,41 @@
+.End-container {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.End-topBar {
+  height: 25%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  font-size: 36px;
+}
+
+.End-chartContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.End-chartMiddle {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+#End-canvas {
+  border: 1px solid black;
+}
+
+#End-facts {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
