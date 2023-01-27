@@ -50,7 +50,7 @@ const End = (props) => {
   }, []);
 
   useEffect(() => {
-    if (trueCoords) {
+    if (trueCoords && colors) {
       clearCanvas(canvasRef);
       drawAxes(canvasRef);
       drawPoints(canvasRef, trueCoords, colors);
