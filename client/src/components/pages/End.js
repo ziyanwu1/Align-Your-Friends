@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 
 import { drawAxes, drawPoints, clearCanvas } from "../../canvasManager.js";
 import { socket } from "../../client-socket.js";
+import { Link } from "@reach/router";
 
 import { get, post } from "../../utilities";
 
@@ -77,6 +78,9 @@ const End = (props) => {
       </div>
 
       <div className="End-facts"></div>
+      <Link to="/">
+        <button>Done</button>
+      </Link>
     </div>
   );
 };
