@@ -50,11 +50,10 @@ const End = (props) => {
       setColors(colorDict);
     });
 
-    get("/api/getplayers", {gameId: props.location.state.gameId}).then((players)=>{
+    get("/api/getplayers", { gameId: props.location.state.gameId }).then((players) => {
       setPlayers(players);
-    })
+    });
   }, []);
-
 
   useEffect(() => {
     if (trueCoords && colors) {
@@ -64,12 +63,11 @@ const End = (props) => {
     }
   });
 
-  
-
   return (
     <div className="End-container">
-{players ? <PlayersBar players={players} gameId={props.location.state.gameId} /> : <div />}{/* FIX PLAYERS AFTER MAKING API*/}
-      
+      {players ? <PlayersBar players={players} gameId={props.location.state.gameId} /> : <div />}
+      {/* FIX PLAYERS AFTER MAKING API*/}
+
       <div className="End-chartContainer">
         <p>{chart.up}</p>
         <div className="End-chartMiddle">
@@ -87,7 +85,7 @@ const End = (props) => {
           <u>True Chart</u>
         </b>
       </div>
-      
+
       <div className="End-facts"></div>
       <Link to="/">
         <button>Done</button>

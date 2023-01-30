@@ -49,8 +49,9 @@ const Chart = (props) => {
 
   const handleCanvasClick = (event) => {
     if (props.currentPlayer !== undefined) {
-      const x = event.clientX;
-      const y = event.clientY;
+      const rect = canvasRef.current.getBoundingClientRect();
+      const x = event.clientX - rect.left;
+      const y = event.clientY - rect.top;
 
       let newCoords = { ...coords };
       newCoords[props.currentPlayer] = [x, y];
