@@ -76,8 +76,7 @@ const Chart = (props) => {
         <p>{chart.right}</p>
       </div>
       <p>{chart.down}</p>
-      <Link
-        to="/end"
+      <Link id="Submit-link" to="/end"
         state={{ user: props.user, coords: coords, gameId: props.gameId, code: props.code }}
       >
         Submit

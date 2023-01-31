@@ -6,6 +6,7 @@ import { Link } from "@reach/router";
 import NotFound from "./NotFound.js";
 
 import "../../utilities.css";
+import "./Lobby.css";
 
 import { socket } from "../../client-socket.js";
 
@@ -40,10 +41,10 @@ const Lobby = (props) => {
   };
 
   return (
-    <div>
+    <div className="Lobby-container">
       {/* we wrap the whole thing around an "gameId ? TRUE : FALSE" displaying the lobby code and playerlist when TRUE and the <Link> tag when False */}
       {gameId ? (
-        <Link
+        <Link className="boxed"
           to="/game"
           state={{
             players: playerList,
@@ -52,10 +53,12 @@ const Lobby = (props) => {
             code: props.location.state.code,
           }}
         >
-          Start Game!!
+          <div className="boxed">
+          Start Game!
+          </div>
         </Link>
       ) : (
-        <div>
+        <div >
           <p>Game code: {props.location.state.code}</p>
           <p>List of players: {playerList}</p>
           <button onClick={startGame}>Continue</button>

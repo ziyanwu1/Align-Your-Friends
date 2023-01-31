@@ -19,7 +19,7 @@ const Home = (props) => {
   const [input, setInput] = useState("");
 
   useEffect(() => {
-    document.body.style.backgroundColor = "pink";
+    document.body.style.backgroundColor = "#edf6ff";
     return () => {
       document.body.style.backgroundColor = "white";
     };

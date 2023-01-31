@@ -1,6 +1,6 @@
 .Navbar-container {
-  padding: var(--s) var(--m);
-  background-color: blue;
+  padding: var(--l) var(--l);
+  background-color: #124d54;
   display: flex;
   flex-direction: row;
   justify-content: space-between;

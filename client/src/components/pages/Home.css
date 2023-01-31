@@ -60,12 +60,26 @@
 #Home-joinbutton {
   width: 100px;
   height: 40px;
+  background-color: #fa5940;
+  text-align: center;
+  border-radius: 8px;
+  color:aliceblue;
+  padding-top: 15px;
+  text-decoration: none;
 }
 
 #Home-createbutton {
   width: 100px;
   height: 40px;
+  background-color: #124d54;
+  text-align: center;
+  border-radius: 8px;
+  color:aliceblue;
+  padding-top: 15px;
+  text-decoration: none;
+
 }
+
 
 .Home-notLogged {
   display: flex;
@@ -75,3 +89,11 @@
   height: 100%;
   font-size: 200px;
 }
+
+
+Link {
+  color: green;
+  background-color: transparent;
+  text-decoration: none;
+}
+
