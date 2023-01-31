@@ -24,7 +24,7 @@ const initializeResults = (players) => {
   for (let player of players) {
     let temp = {};
     for (p of players) {
-      temp[p] = [0, 0];
+      temp[p] = [-1000, -1000];
     }
     out[player] = temp;
   }

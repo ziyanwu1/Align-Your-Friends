@@ -7,6 +7,7 @@ import "./Avatar.css";
 /*
 props:
     playerId : a player id for a single player
+    playerColor: a color for the given player
 
 */
 
@@ -16,9 +17,15 @@ const Avatar = (props) => {
   const [name, setName] = useState("anon");
 
   useEffect(() => {
+
     get("/api/user", { userid: props.playerId }).then((user) => {
       setName(user.name);
     });
+
+    //cleanup function haha
+    return ()=>{
+    }
+    
   }, []);
 
   const updateCurrent = () => {
@@ -26,7 +33,8 @@ const Avatar = (props) => {
   };
 
   return (
-    <div>
+    <div className="Avatar-container">
+      <svg width="50" height="50"><rect width="50" height="50" fill={props.playerColor}>test2</rect></svg>
       <button onClick={updateCurrent}>{name}</button>
     </div>
   );

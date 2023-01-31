@@ -2,6 +2,8 @@ import React, { useState, useEffect, useRef } from "react";
 
 import { drawAxes, drawPoints, clearCanvas } from "../../canvasManager.js";
 import { socket } from "../../client-socket.js";
+import { Link } from "@reach/router";
+import PlayersBar from "../modules/PlayersBar.js";
 
 import { get, post } from "../../utilities";
 
@@ -20,10 +22,10 @@ const End = (props) => {
   const [trueCoords, setTrueCoords] = useState(undefined);
   const [colors, setColors] = useState(undefined);
   const [chart, setChart] = useState({ left: "t", right: "t", up: "t", down: "t" });
+  const [players, setPlayers] = useState(undefined);
 
   useEffect(() => {
     socket.on("newtruepoint", (coords) => {
-      console.log(coords);
       setTrueCoords(coords);
     });
   }, []);
@@ -47,6 +49,10 @@ const End = (props) => {
     }).then((colorDict) => {
       setColors(colorDict);
     });
+
+    get("/api/getplayers", { gameId: props.location.state.gameId }).then((players) => {
+      setPlayers(players);
+    });
   }, []);
 
   useEffect(() => {
@@ -59,11 +65,9 @@ const End = (props) => {
 
   return (
     <div className="End-container">
-      <div className="End-topBar">
-        <b>
-          <u>True Chart</u>
-        </b>
-      </div>
+      {players ? <PlayersBar players={players} gameId={props.location.state.gameId} /> : <div />}
+      {/* FIX PLAYERS AFTER MAKING API*/}
+
       <div className="End-chartContainer">
         <p>{chart.up}</p>
         <div className="End-chartMiddle">
@@ -76,7 +80,16 @@ const End = (props) => {
         <p>{chart.down}</p>
       </div>
 
+      <div className="End-topBar">
+        <b>
+          <u>True Chart</u>
+        </b>
+      </div>
+
       <div className="End-facts"></div>
+      <Link to="/">
+        <button>Done</button>
+      </Link>
     </div>
   );
 };

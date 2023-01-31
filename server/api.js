@@ -199,6 +199,15 @@ router.get("/getchart", (req, res) => {
   });
 });
 
+router.get("/getplayers", (req, res)=>{
+  let query = { _id: req.query.gameId };
+  GameModel.find(query).then((doc) => {
+    // we should hopefully only get one document from database
+    let players = doc[0]["players"];
+    res.send(players);
+  });
+})
+
 // anything else falls to this "not found" case
 router.all("*", (req, res) => {
   console.log(`API route not found: ${req.method} ${req.url}`);

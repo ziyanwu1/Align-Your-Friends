@@ -28,7 +28,7 @@ const Game = (props) => {
 
   return (
     <div className="Game-container">
-      <PlayersBar players={props.location.state.players} onClick={setCurrentPlayer} />
+      <PlayersBar players={props.location.state.players} gameId={props.location.state.gameId} onClick={setCurrentPlayer} />
       <Chart
         currentPlayer={currentPlayer}
         user={props.location.state.user}
