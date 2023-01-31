@@ -52,13 +52,13 @@ const Lobby = (props) => {
             code: props.location.state.code,
           }}
         >
-          Press Here
+          Start Game!!
         </Link>
       ) : (
         <div>
-          <p>{props.location.state.code}</p>
-          <p>{playerList}</p>
-          <button onClick={startGame}>Start</button>
+          <p>Game code: {props.location.state.code}</p>
+          <p>List of players: {playerList}</p>
+          <button onClick={startGame}>Continue</button>
         </div>
       )}
     </div>

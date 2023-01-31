@@ -2,7 +2,15 @@
 
 /* constants */
 const colors = ["red", "blue", "green", "yellow", "purple", "orange", "silver"]; // colors to use for players
-const charts = [{ up: "up", down: "down", left: "left", right: "right" }];
+const charts = [{ up: "up", down: "down", left: "left", right: "right" }, 
+{ up: "hot weather", down: "cold weather", left: "city", right: "suburbs" },
+{ up: "all knowing", down: "confused", left: "seems all knowing", right: "seems confused" },
+{ up: "looks like a cinnamon roll", down: "looks like they would kill you", left: "would kill you", right: "cinnamon roll" },
+{ up: "causes problems", down: "solves problems", left: "by accident", right: "on purpose" },
+{ up: "likes sweet snacks", down: "likes savory snacks", left: "picky eater", right: "will eat anything" },
+{ up: "jock", down: "nerd", left: "prep", right: "goth" }, 
+{ up: "enigmatic", down: "an open book", left: "crewmate", right: "imposter" }, 
+{ up: "book", down: "movie", left: "fantasy", right: "realism" }];
 //
 
 const getRandomChart = () => {
