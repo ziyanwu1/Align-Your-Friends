@@ -70,8 +70,6 @@ router.post("/initgame", (req, res) => {
   newGame.save().then((doc) => {
     const id = doc._id;
     socketManager.getIo().to(req.body.code).emit("startgame", id);
-    // TODO: socket emit this id to other players in the same socket room (room code is in req.body.code) so they can pass in to future requests
-    // also emit the event to tell all players to swap to the "Game" page
   });
 
   res.send({});
@@ -176,6 +174,7 @@ router.get("/truepoints", (req, res) => {
     inputs:
       req.query.gameId  -- gives us the game we need to look at
   */
+
   let query = { _id: req.query.gameId };
   GameModel.find(query).then((doc) => {
     // we should hopefully only get one document from database
@@ -199,14 +198,19 @@ router.get("/getchart", (req, res) => {
   });
 });
 
-router.get("/getplayers", (req, res)=>{
+router.get("/getplayers", (req, res) => {
+  /*
+  inputs:
+    req.query.gameId -- gives us the game we need to look at
+  */
+
   let query = { _id: req.query.gameId };
   GameModel.find(query).then((doc) => {
     // we should hopefully only get one document from database
     let players = doc[0]["players"];
     res.send(players);
   });
-})
+});
 
 // anything else falls to this "not found" case
 router.all("*", (req, res) => {

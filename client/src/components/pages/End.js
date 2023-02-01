@@ -66,8 +66,6 @@ const End = (props) => {
   return (
     <div className="End-container">
       {players ? <PlayersBar players={players} gameId={props.location.state.gameId} /> : <div />}
-      {/* FIX PLAYERS AFTER MAKING API*/}
-
       <div className="End-chartContainer">
         <p>{chart.up}</p>
         <div className="End-chartMiddle">
