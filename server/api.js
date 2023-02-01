@@ -173,7 +173,16 @@ router.post("/updategame", (req, res) => {
         .getIo()
         .to(req.body.code)
         .emit("newtruepoint", gameLogic.getTruePoints(doc["results"]));
+
+      // the data in "newallpoints" should be an object of objects
+      socketManager.getIo().to(req.body.code).emit("newallpoints", doc["results"]);
     });
+  });
+
+  let userQuery = { _id: req.body.user };
+  User.find(userQuery).then((docList) => {
+    docList[0]["pastgames"].unshift(req.body.gameId);
+    docList[0].save();
   });
 });
 

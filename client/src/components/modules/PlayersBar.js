@@ -1,4 +1,4 @@
-import React, { useEffect , useState} from "react";
+import React, { useEffect, useState } from "react";
 
 import Avatar from "./Avatar.js";
 
@@ -10,7 +10,7 @@ import { get } from "../../utilities.js";
 props:
     players: a list of the players in the game
     gameId: id of the game
-
+    onClick : an onClick function for the buttons in the playersBar
 */
 
 // an idea: normally avatars have pictures. what if instead they just have a solid block of color so easier
@@ -20,7 +20,7 @@ const PlayersBar = (props) => {
   const [colors, setColors] = useState({});
 
   useEffect(() => {
-   get("/api/colors", {
+    get("/api/colors", {
       gameId: props.gameId /* this is probably going to come from the prop as well */,
     }).then((colorDict) => {
       setColors(colorDict);
