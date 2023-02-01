@@ -196,8 +196,7 @@ router.get("/truepoints", (req, res) => {
   GameModel.find(query).then((doc) => {
     // we should hopefully only get one document from database
     let result = doc[0]["results"];
-    let allCoords = Object.fromEntries(result);
-    let out = gameLogic.getTruePoints(allCoords);
+    let out = gameLogic.getTruePoints(result);
     res.send(out);
   });
 });
