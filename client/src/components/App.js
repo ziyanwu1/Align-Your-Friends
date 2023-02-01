@@ -8,6 +8,8 @@ import Home from "./pages/Home.js";
 import Game from "./pages/Game.js";
 import Lobby from "./pages/Lobby.js";
 import End from "./pages/End.js";
+import Profile from "./pages/Profile.js";
+import OldGame from "./pages/OldGame.js";
 
 import "../utilities.css";
 
@@ -49,9 +51,11 @@ const App = () => {
     <>
       <Router>
         <Home path="/" handleLogin={handleLogin} handleLogout={handleLogout} user={userId} />
+        <Profile path="/profile" />
         <Game path="/game" user={userId} />
         <Lobby path="/lobby" user={userId} />
         <End path="/end" />
+        <OldGame path="/oldgame" />
         <NotFound default />
       </Router>
     </>

@@ -36,6 +36,7 @@ const Home = (props) => {
           handleLogin={props.handleLogin}
           handleLogout={props.handleLogout}
           userId={props.user}
+          home={true}
         />
       </div>
       {props.user ? (
