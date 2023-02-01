@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import Navbar from "../modules/Navbar.js";
 
+import { Link } from "@reach/router";
 import { get, post } from "../../utilities.js";
 
 import "./Profile.css";
@@ -25,13 +26,15 @@ const Profile = (props) => {
       setName(document.name);
       setPastGames(document.pastgames);
     });
-  });
+  }, []);
 
-  const listOfPastGames = pastGames.map((gameId) => {
-    <Link to="/oldgame" state={{ gameId: gameId }}>
-      {gameId}
-    </Link>;
-  });
+  const listOfPastGames = pastGames.map((gameId) => (
+    <div>
+      <Link to="/oldgame" state={{ gameId: gameId, userId: props.location.state.userId }}>
+        {gameId}
+      </Link>
+    </div>
+  ));
 
   return (
     <div>
