@@ -48,7 +48,15 @@ router.post("/initsocket", (req, res) => {
 // |------------------------------|
 
 router.get("/user", (req, res) => {
-  User.findById(req.query.userid).then((user) => {
+  /* 
+  inputs:
+    req.query.userId -- user's id
+
+  output:
+    a User object (follows the User schema format)
+  */
+
+  User.findById(req.query.userId).then((user) => {
     res.send(user);
   });
 });

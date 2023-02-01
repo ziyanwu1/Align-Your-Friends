@@ -11,9 +11,9 @@ import "./End.css";
 /*
 props:
     location.state.gameId -- gives us the id of the game on the database
-    location.state.user
-    location.state.coords
-    location.state.code
+    location.state.user -- gives us the id of the user
+    location.state.coords -- gives us the coordinates that was submitted by the user on the Game page
+    location.state.code -- gives us the lobby code that started this game
 */
 
 const End = (props) => {
