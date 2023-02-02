@@ -8,7 +8,7 @@
 */
 
 const express = require("express");
-
+const ObjectId = require("mongodb").ObjectID;
 // import models so we can interact with the database
 const User = require("./models/user");
 const GameModel = require("./models/gameModel");
@@ -225,6 +225,25 @@ router.get("/getplayers", (req, res) => {
     // we should hopefully only get one document from database
     let players = doc[0]["players"];
     res.send(players);
+  });
+});
+
+router.get("/getallusers", (req, res) => {
+  /*
+  inputs:
+    req.query.idList -- gives us a list of userIds to lookup the names of
+
+  outputs:
+    gives us a list of user's names
+  */
+  let query = req.query.idList.split(",");
+
+  User.find({ _id: { $in: query } }).then((docs) => {
+    let out = [];
+    for (doc of docs) {
+      out.push(doc.name);
+    }
+    res.send(out);
   });
 });
 
