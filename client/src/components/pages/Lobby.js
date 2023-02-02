@@ -21,10 +21,15 @@ props:
 const Lobby = (props) => {
   const [playerList, setPlayerList] = useState([]);
   const [gameId, setGameId] = useState(undefined);
+  const [playerNames, setPlayerNames] = useState([]);
 
   useEffect(() => {
     socket.on("newplayer", (playerIds) => {
       setPlayerList(playerIds);
+
+      get("/api/getallusers", { idList: playerIds }).then((list) => {
+        setPlayerNames(list);
+      });
     });
 
     socket.on("startgame", (gameDBId) => {
@@ -42,9 +47,9 @@ const Lobby = (props) => {
 
   return (
     <div className="Lobby-container">
-      {/* we wrap the whole thing around an "gameId ? TRUE : FALSE" displaying the lobby code and playerlist when TRUE and the <Link> tag when False */}
       {gameId ? (
-        <Link className="boxed"
+        <Link
+          className="boxed"
           to="/game"
           state={{
             players: playerList,
@@ -53,14 +58,17 @@ const Lobby = (props) => {
             code: props.location.state.code,
           }}
         >
-          <div className="boxed">
-          Start Game!
-          </div>
+          <div className="boxed">Start Game!</div>
         </Link>
       ) : (
-        <div >
+        <div>
           <p>Game code: {props.location.state.code}</p>
-          <p>List of players: {playerList}</p>
+          <div>List of players: </div>
+          <div>
+            {playerNames.map((name) => (
+              <div>{name}</div>
+            ))}
+          </div>
           <button onClick={startGame}>Continue</button>
         </div>
       )}
