@@ -32,12 +32,12 @@ const Avatar = (props) => {
 
   return (
     <div className="Avatar-container">
-      <svg width="50" height="50">
-        <rect width="50" height="50" fill={props.playerColor}>
-          test2
-        </rect>
+      <svg width="30" height="30">
+        <rect width="30" height="30" fill={props.playerColor}></rect>
       </svg>
-      <button onClick={updateCurrent}>{name}</button>
+      <button className="Avatar-button" onClick={updateCurrent}>
+        {name}
+      </button>
     </div>
   );
 };

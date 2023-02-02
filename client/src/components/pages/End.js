@@ -28,6 +28,14 @@ const End = (props) => {
   const [canvasCoords, setCanvasCoords] = useState(undefined); // this is coords for what should be drawn to the canvas
   const [seeTruePoints, setSeeTruePoints] = useState(true);
 
+  // initialize background color
+  useEffect(() => {
+    document.body.style.backgroundColor = "#edf6ff";
+    return () => {
+      document.body.style.backgroundColor = "white";
+    };
+  }, []);
+
   // initialize sockets to capture new results from other players
   useEffect(() => {
     socket.on("newtruepoint", (coords) => {
@@ -115,14 +123,16 @@ const End = (props) => {
         <p>{chart.down}</p>
       </div>
 
-      <div className="End-topBar">
-        <button onClick={handleTrueClick}>True Chart</button>
+      <div className="End-trueContainer">
+        <button id="End-trueButton" onClick={handleTrueClick}>
+          True Chart
+        </button>
       </div>
-
-      <div className="End-facts"></div>
-      <Link to="/">
-        <button>Done</button>
-      </Link>
+      <div className="End-doneContainer">
+        <Link id="End-doneButton" to="/">
+          Done
+        </Link>
+      </div>
     </div>
   );
 };

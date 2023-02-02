@@ -13,15 +13,12 @@ props:
     onClick : an onClick function for the buttons in the playersBar
 */
 
-// an idea: normally avatars have pictures. what if instead they just have a solid block of color so easier
-// we can use a useEffect to send api request to the game dictionary to get the colors of the players.
-
 const PlayersBar = (props) => {
   const [colors, setColors] = useState({});
 
   useEffect(() => {
     get("/api/colors", {
-      gameId: props.gameId /* this is probably going to come from the prop as well */,
+      gameId: props.gameId,
     }).then((colorDict) => {
       setColors(colorDict);
     });
