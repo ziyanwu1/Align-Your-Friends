@@ -63,9 +63,10 @@
   background-color: #fa5940;
   text-align: center;
   border-radius: 8px;
-  color:aliceblue;
+  color: aliceblue;
   padding-top: 15px;
   text-decoration: none;
+  vertical-align: middle;
 }
 
 #Home-createbutton {
@@ -74,12 +75,11 @@
   background-color: #124d54;
   text-align: center;
   border-radius: 8px;
-  color:aliceblue;
+  color: aliceblue;
   padding-top: 15px;
   text-decoration: none;
-
+  vertical-align: middle;
 }
-
 
 .Home-notLogged {
   display: flex;
@@ -90,10 +90,8 @@
   font-size: 200px;
 }
 
-
 Link {
   color: green;
   background-color: transparent;
   text-decoration: none;
 }
-

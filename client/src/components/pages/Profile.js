@@ -14,10 +14,6 @@ props:
 */
 
 const Profile = (props) => {
-  // useEffect to GET the name of the user
-  // useEffect to GET the list of past games of the user
-  //     -- doing the api call for getting the games should be easy
-  //     -- when doing the api call for adding a game to a user, use [NEW ELEMENT HERE].concat(array) to have most recent games on top
   const [name, setName] = useState("");
   const [pastGames, setPastGames] = useState([]);
 

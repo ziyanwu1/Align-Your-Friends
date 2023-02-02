@@ -8,6 +8,8 @@
 
 .Navbar-items {
   height: var(--login-small-height);
+  color: aliceblue;
+  text-decoration: none;
 }
 
 .Navbar-leftside {

@@ -42,7 +42,13 @@ const Home = (props) => {
       {props.user ? (
         <div className="Home-body">
           <div className="Home-input">
-            <input type="text" id="Home-inputfield" value={input} onChange={handleChange} />
+            <input
+              type="text"
+              id="Home-inputfield"
+              value={input}
+              onChange={handleChange}
+              placeholder="Enter Code Here!"
+            />
           </div>
 
           <div className="Home-join">
