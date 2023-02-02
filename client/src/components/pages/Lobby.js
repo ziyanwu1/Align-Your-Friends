@@ -69,7 +69,9 @@ const Lobby = (props) => {
               <div>{name}</div>
             ))}
           </div>
-          <button onClick={startGame}>Continue</button>
+          <button id="Lobby-button" onClick={startGame}>
+            Continue
+          </button>
         </div>
       )}
     </div>

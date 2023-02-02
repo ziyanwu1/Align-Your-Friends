@@ -27,6 +27,14 @@ const OldGame = (props) => {
   const [canvasCoords, setCanvasCoords] = useState(undefined); // this is coords for what should be drawn to the canvas
   const [seeTruePoints, setSeeTruePoints] = useState(true);
 
+  // initialize background color
+  useEffect(() => {
+    document.body.style.backgroundColor = "#edf6ff";
+    return () => {
+      document.body.style.backgroundColor = "white";
+    };
+  }, []);
+
   // GET static data about the game from the database
   useEffect(() => {
     get("/api/getchart", { gameId: props.location.state.gameId }).then((chart) => {
@@ -52,7 +60,7 @@ const OldGame = (props) => {
     get("/api/truepoints", { gameId: props.location.state.gameId }).then((coords) => {
       setTrueCoords(coords);
     });
-  });
+  }, []);
 
   // update the canvas
   useEffect(() => {
@@ -81,7 +89,7 @@ const OldGame = (props) => {
   };
 
   return (
-    <div className="End-container">
+    <div className="Old-container">
       {players ? (
         <PlayersBar
           players={players}
@@ -91,26 +99,29 @@ const OldGame = (props) => {
       ) : (
         <div> </div>
       )}
-      <div className="End-chartContainer">
+      <div className="Old-chartContainer">
         <p>{chart.up}</p>
-        <div className="End-chartMiddle">
+        <div className="Old-chartMiddle">
           <p>{chart.left}</p>
           <div>
-            <canvas ref={canvasRef} className="End-canvas" width="500px" height="500px"></canvas>
+            <canvas ref={canvasRef} className="Old-canvas" width="500px" height="500px"></canvas>
           </div>
           <p>{chart.right}</p>
         </div>
         <p>{chart.down}</p>
       </div>
 
-      <div className="End-topBar">
-        <button onClick={handleTrueClick}>True Chart</button>
+      <div className="Old-trueContainer">
+        <button id="Old-trueButton" onClick={handleTrueClick}>
+          True Chart
+        </button>
       </div>
 
-      <div className="End-facts"></div>
-      <Link to="/profile" state={{ userId: props.location.state.userId }}>
-        <button>Done</button>
-      </Link>
+      <div className="Old-doneContainer">
+        <Link id="Old-doneButton" to="/profile" state={{ userId: props.location.state.userId }}>
+          Done
+        </Link>
+      </div>
     </div>
   );
 };

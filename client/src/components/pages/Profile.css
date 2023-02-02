@@ -1,0 +1,12 @@
+.Profile-title {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.Profile-linkContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
